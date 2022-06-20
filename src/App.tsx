@@ -1,32 +1,32 @@
 // Emotion
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { css } from "@emotion/react";
-
-// Material UI
-import { Container, Grid } from "@mui/material";
-import Header from "./components/Header";
-
-// Formik
-import { Formik, Form } from "formik";
-
-// Yup
+import { jsx, css } from "@emotion/react";
+import { Container, createTheme, Grid, Typography } from "@mui/material";
+import { Formik, Form, Field } from "formik";
 import * as Yup from "yup";
-
-// CSS
+import Header from "./components/Header";
 import "./styles/App.css";
 
+const theme = createTheme({ spacing: 8 }); // use createTheme hook to create a theme object
+
 const styles = {
-  header: css({
-    backgroundColor: "red",
-    marginTop: "100px",
+  formWrapper: css({
+    marginTop: theme.spacing(5), // takes value and * by theme spacing value
+    marginBottom: theme.spacing(8),
   }),
 };
 
-const INITIAL_FORM_STATE = {};
+const INITIAL_FORM_STATE = {
+  firstName: "",
+};
 
-const VALIDATION_SCHEMA = {};
+const VALIDATION_SCHEMA = Yup.object().shape({
+  firstName: Yup.string()
+    .min(2, "Too Short...")
+    .max(16, "Too Long...")
+    .required("Required"),
+});
 
 const App = () => {
   return (
@@ -41,13 +41,32 @@ const App = () => {
       <Grid item xs={12}>
         <Container maxWidth={"md"}>
           {/* A container centers your content horizontally */}
-          <div css={styles.header}>
+          <div css={styles.formWrapper}>
             <Formik
               initialValues={INITIAL_FORM_STATE}
-              onSubmit={() => console.log("Submit")}
+              onSubmit={(values) => console.log(values)}
               validationSchema={VALIDATION_SCHEMA}
             >
-              <Form></Form>
+              <Form>
+                <Grid container spacing={2}>
+                  <Grid item xs={12}>
+                    <Typography>
+                      Your Details
+                      <Field
+                        type="firstName"
+                        name="firstName"
+                        placeholder="First Name"
+                      />
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography>Your Address</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Typography>Booking Information</Typography>
+                  </Grid>
+                </Grid>
+              </Form>
             </Formik>
           </div>
         </Container>
