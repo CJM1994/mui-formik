@@ -3,15 +3,17 @@
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
 import { Container, createTheme, Grid, Typography } from "@mui/material";
-import { Formik, Form, Field } from "formik";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Header from "./components/Header";
+import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
 import "./styles/App.css";
 
+// Would need to refactor and use ThemeProvider if theme was being used in other components
 const theme = createTheme({ spacing: 8 }); // use createTheme hook to create a theme object
 
 const styles = {
-  formWrapper: css({
+  formWrap: css({
     marginTop: theme.spacing(5), // takes value and * by theme spacing value
     marginBottom: theme.spacing(8),
   }),
@@ -41,7 +43,7 @@ const App = () => {
       <Grid item xs={12}>
         <Container maxWidth={"md"}>
           {/* A container centers your content horizontally */}
-          <div css={styles.formWrapper}>
+          <div css={styles.formWrap}>
             <Formik
               initialValues={INITIAL_FORM_STATE}
               onSubmit={(values) => console.log(values)}
@@ -52,11 +54,7 @@ const App = () => {
                   <Grid item xs={12}>
                     <Typography>
                       Your Details
-                      <Field
-                        type="firstName"
-                        name="firstName"
-                        placeholder="First Name"
-                      />
+                      <TextFieldWrap name={"password"} type={"password"} />
                     </Typography>
                   </Grid>
                   <Grid item xs={12}>
