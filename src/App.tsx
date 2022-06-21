@@ -21,12 +21,32 @@ const styles = {
 
 const INITIAL_FORM_STATE = {
   firstName: "",
+  lastName: "",
+  email: "",
+  phoneNumber: "",
 };
+
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
 
 const VALIDATION_SCHEMA = Yup.object().shape({
   firstName: Yup.string()
     .min(2, "Too Short...")
     .max(16, "Too Long...")
+    .required("Required"),
+  lastName: Yup.string()
+    .min(2, "Too Short...")
+    .max(16, "Too Long...")
+    .required("Required"),
+  email: Yup.string()
+    .min(5, "Too Short...")
+    .max(36, "Too Long...")
+    .email("Invalid Email...")
+    .required("Required"),
+  phoneNumber: Yup.string()
+    .matches(phoneRegExp, "Invalid Phone Number...")
+    .min(10, "Too Short...")
+    .max(10, "Too Long...")
     .required("Required"),
 });
 
@@ -52,10 +72,31 @@ const App = () => {
               <Form>
                 <Grid container spacing={2}>
                   <Grid item xs={12}>
-                    <Typography>
-                      Your Details
-                      <TextFieldWrap name={"password"} type={"password"} />
-                    </Typography>
+                    <Typography>Your Details</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap
+                      name="firstName"
+                      type="text"
+                      label="First Name"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap
+                      name="lastName"
+                      type="text"
+                      label="Last Name"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap name="email" type="text" label="Email" />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap
+                      name="phoneNumber"
+                      type="text"
+                      label="Phone Number"
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Your Address</Typography>

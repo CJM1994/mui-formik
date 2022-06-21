@@ -4,6 +4,7 @@ import { useField } from "formik";
 interface Props {
   name: string;
   type: string;
+  label?: string;
 }
 
 const TextFieldWrap = ({ name, ...props }: Props) => {
