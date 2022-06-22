@@ -7,6 +7,7 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import Header from "./components/Header";
 import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
+import SelectorWrap from "./components/FormsUI/SelectorWrap";
 import "./styles/App.css";
 
 // Would need to refactor and use ThemeProvider if theme was being used in other components
@@ -136,7 +137,7 @@ const App = () => {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <TextFieldWrap name="country" type="text" label="Country" />
+                    <SelectorWrap name="country" />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Booking Information</Typography>

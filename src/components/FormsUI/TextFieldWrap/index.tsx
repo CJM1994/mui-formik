@@ -7,7 +7,7 @@ interface Props {
   label?: string;
 }
 
-const TextFieldWrap = ({ name, ...props }: Props) => {
+const TextFieldWrap = ({ name, ...props }: Props): JSX.Element => {
   const [field, meta, helpers] = useField(name);
 
   const MuiConfig: OutlinedTextFieldProps = {
