@@ -24,6 +24,11 @@ const INITIAL_FORM_STATE = {
   lastName: "",
   email: "",
   phoneNumber: "",
+  addressLine1: "",
+  addressLine2: "",
+  city: "",
+  province: "",
+  country: "",
 };
 
 const phoneRegExp =
@@ -48,6 +53,11 @@ const VALIDATION_SCHEMA = Yup.object().shape({
     .min(10, "Too Short...")
     .max(10, "Too Long...")
     .required("Required"),
+  addressLine1: Yup.string().required("Required"),
+  addressLine2: Yup.string(),
+  city: Yup.string().required("Required"),
+  province: Yup.string().required("Required"),
+  country: Yup.string().required("Required"),
 });
 
 const App = () => {
@@ -100,6 +110,33 @@ const App = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Your Address</Typography>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextFieldWrap
+                      name="addressLine1"
+                      type="text"
+                      label="Address Line 1"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap
+                      name="addressLine2"
+                      type="text"
+                      label="Address Line 2"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap name="city" type="text" label="City" />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap
+                      name="province"
+                      type="text"
+                      label="Province"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextFieldWrap name="country" type="text" label="Country" />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Booking Information</Typography>
