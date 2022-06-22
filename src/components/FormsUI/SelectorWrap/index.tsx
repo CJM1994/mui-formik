@@ -1,4 +1,7 @@
 import {
+  FormControl,
+  FormHelperText,
+  InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
@@ -8,9 +11,10 @@ import { useField, useFormikContext } from "formik";
 
 interface Props {
   name: string;
+  label: string;
 }
 
-const SelectorWrap = ({ name, ...props }: Props): JSX.Element => {
+const SelectorWrap = ({ name, label, ...props }: Props): JSX.Element => {
   const [field, meta, helpers] = useField(name);
   const { setFieldValue } = useFormikContext();
 
@@ -19,20 +23,28 @@ const SelectorWrap = ({ name, ...props }: Props): JSX.Element => {
   };
 
   const MuiConfig: SelectProps = {
-    fullWidth: true,
+    label: label,
     variant: "outlined",
   };
 
+  const errorText = meta.touched && meta.error ? meta.error : "";
+  const isError = meta.touched && meta.error ? true : false;
+
   return (
-    <Select
-      {...MuiConfig}
-      {...field}
-      {...props}
-      onChange={(event) => handleChange(event)}
-    >
-      <MenuItem value={"Canada"}>Canada</MenuItem>
-      <MenuItem value={"United States"}>United States</MenuItem>
-    </Select>
+    <FormControl fullWidth>
+      <InputLabel error={isError}>{label}</InputLabel>
+      <Select
+        {...MuiConfig}
+        {...field}
+        {...props}
+        onChange={(event) => handleChange(event)}
+        error={isError}
+      >
+        <MenuItem value={"Canada"}>Canada</MenuItem>
+        <MenuItem value={"United States"}>United States</MenuItem>
+      </Select>
+      <FormHelperText error={isError}>{errorText}</FormHelperText>
+    </FormControl>
   );
 };
 

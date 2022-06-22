@@ -137,7 +137,7 @@ const App = () => {
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <SelectorWrap name="country" />
+                    <SelectorWrap name="country" label="Country" />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Booking Information</Typography>
