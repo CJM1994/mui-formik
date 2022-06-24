@@ -84,7 +84,7 @@ const VALIDATION_SCHEMA = Yup.object().shape({
     "Please limit your message to a maximum of 500 characters",
     (value) => (value && value !== "" ? value.length <= 500 : true)
   ),
-  termsofService: Yup.boolean()
+  termsOfService: Yup.boolean()
     .oneOf([true], "The terms of service must be accepted to continue")
     .required("The terms of service must be accepted to continue"),
 });

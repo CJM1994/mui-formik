@@ -39,8 +39,8 @@ const CheckboxWrapper = ({
 
   return (
     <FormControl error={isError}>
+      <FormLabel component={"legend"}>{legend}</FormLabel>
       <FormGroup>
-        <FormLabel component={"legend"}>{legend}</FormLabel>
         <FormControlLabel
           control={<Checkbox {...checkboxProps} />}
           label={label}
