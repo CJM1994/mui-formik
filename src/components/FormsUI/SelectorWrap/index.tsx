@@ -12,9 +12,15 @@ import { useField, useFormikContext } from "formik";
 interface Props {
   name: string;
   label: string;
+  options: any;
 }
 
-const SelectorWrap = ({ name, label, ...props }: Props): JSX.Element => {
+const SelectorWrap = ({
+  name,
+  label,
+  options,
+  ...props
+}: Props): JSX.Element => {
   const [field, meta, helpers] = useField(name);
   const { setFieldValue } = useFormikContext();
 
@@ -40,8 +46,9 @@ const SelectorWrap = ({ name, label, ...props }: Props): JSX.Element => {
         onChange={(event) => handleChange(event)}
         error={isError}
       >
-        <MenuItem value={"Canada"}>Canada</MenuItem>
-        <MenuItem value={"United States"}>United States</MenuItem>
+        {options.map((value: string) => {
+          return <MenuItem value={value}>{value}</MenuItem>;
+        })}
       </Select>
       <FormHelperText error={isError}>{errorText}</FormHelperText>
     </FormControl>

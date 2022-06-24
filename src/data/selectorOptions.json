@@ -1,0 +1,14 @@
+{
+    "countries": [
+        "Canada", 
+        "United States"
+    ],
+    "provinces": [
+        "British Columbia",
+        "Alberta",
+        "Newfoundland",
+        "Yukon",
+        "Northwest Territories",
+        "Manitoba"
+    ]
+}

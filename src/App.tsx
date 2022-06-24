@@ -8,6 +8,7 @@ import * as Yup from "yup";
 import Header from "./components/Header";
 import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
 import SelectorWrap from "./components/FormsUI/SelectorWrap";
+import selectorOptions from "./data/selectorOptions.json";
 import "./styles/App.css";
 
 // Would need to refactor and use ThemeProvider if theme was being used in other components
@@ -130,14 +131,18 @@ const App = () => {
                     <TextFieldWrap name="city" type="text" label="City" />
                   </Grid>
                   <Grid item xs={6}>
-                    <TextFieldWrap
+                    <SelectorWrap
                       name="province"
-                      type="text"
                       label="Province"
+                      options={selectorOptions.provinces}
                     />
                   </Grid>
                   <Grid item xs={6}>
-                    <SelectorWrap name="country" label="Country" />
+                    <SelectorWrap
+                      name="country"
+                      label="Country"
+                      options={selectorOptions.countries}
+                    />
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Booking Information</Typography>
