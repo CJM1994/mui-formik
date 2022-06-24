@@ -33,8 +33,11 @@ const CheckboxWrapper = ({
     onChange: handleChange,
   };
 
+  const errorText = meta.error && meta.touched ? meta.error : "";
+  const isError = meta.error && meta.touched ? true : false;
+
   return (
-    <FormControl>
+    <FormControl error={isError}>
       <FormGroup>
         <FormLabel component={"legend"}>{legend}</FormLabel>
         <FormControlLabel

@@ -2,7 +2,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, css } from "@emotion/react";
-import { Container, createTheme, Grid, Typography } from "@mui/material";
+import {
+  Button,
+  Container,
+  createTheme,
+  Grid,
+  Typography,
+} from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import CheckboxWrapper from "./components/FormsUI/CheckboxWrapper";
@@ -83,6 +89,9 @@ const VALIDATION_SCHEMA = Yup.object().shape({
     "Please limit your message to a maximum of 500 characters",
     (value) => (value && value !== "" ? value.length <= 500 : true)
   ),
+  termsofService: Yup.boolean()
+    .oneOf([true], "The terms of service must be accepted to continue")
+    .required("The terms of service must be accepted to continue"),
 });
 
 const App = () => {
@@ -188,11 +197,16 @@ const App = () => {
                       rows={4}
                     />
                   </Grid>
-                  <CheckboxWrapper
-                    name="termsOfService"
-                    label="I Agree"
-                    legend="Terms of Service"
-                  />
+                  <Grid item xs={12}>
+                    <CheckboxWrapper
+                      name="termsOfService"
+                      label="I Agree"
+                      legend="Terms of Service"
+                    />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Button type="submit">Submit</Button>
+                  </Grid>
                 </Grid>
               </Form>
             </Formik>
