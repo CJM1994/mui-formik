@@ -5,6 +5,8 @@ interface Props {
   name: string;
   type: string;
   label?: string;
+  multiline?: boolean;
+  rows?: number;
 }
 
 const TextFieldWrap = ({ name, ...props }: Props): JSX.Element => {

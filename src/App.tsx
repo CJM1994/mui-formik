@@ -34,6 +34,7 @@ const INITIAL_FORM_STATE = {
   country: "",
   departureDate: new Date(),
   arrivalDate: new Date(),
+  message: "",
 };
 
 const phoneRegExp =
@@ -75,6 +76,11 @@ const VALIDATION_SCHEMA = Yup.object().shape({
         schema.min(departureDate, "Arrival Date must be after Departure Date")
     )
     .required("Required"),
+  message: Yup.string().test(
+    "length",
+    "Please limit your message to a maximum of 500 characters",
+    (value) => (value && value !== "" ? value.length <= 500 : true)
+  ),
 });
 
 const App = () => {
@@ -170,6 +176,15 @@ const App = () => {
                   </Grid>
                   <Grid item xs={6}>
                     <DateTimePicker name="arrivalDate" label="Arrival Date" />
+                  </Grid>
+                  <Grid item xs={12}>
+                    <TextFieldWrap
+                      name="message"
+                      type="text"
+                      label="Message"
+                      multiline={true}
+                      rows={4}
+                    />
                   </Grid>
                 </Grid>
               </Form>
