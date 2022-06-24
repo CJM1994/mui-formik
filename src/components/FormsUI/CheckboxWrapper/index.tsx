@@ -3,6 +3,7 @@ import {
   FormControl,
   FormControlLabel,
   FormGroup,
+  FormHelperText,
   FormLabel,
 } from "@mui/material";
 import { useField, useFormikContext } from "formik";
@@ -44,6 +45,7 @@ const CheckboxWrapper = ({
           control={<Checkbox {...checkboxProps} />}
           label={label}
         ></FormControlLabel>
+        <FormHelperText error={isError}>{errorText}</FormHelperText>
       </FormGroup>
     </FormControl>
   );
