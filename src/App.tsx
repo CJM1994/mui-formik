@@ -32,7 +32,8 @@ const INITIAL_FORM_STATE = {
   city: "",
   province: "",
   country: "",
-  date: new Date(),
+  departureDate: new Date(),
+  arrivalDate: new Date(),
 };
 
 const phoneRegExp =
@@ -62,8 +63,17 @@ const VALIDATION_SCHEMA = Yup.object().shape({
   city: Yup.string().required("Required"),
   province: Yup.string().required("Required"),
   country: Yup.string().required("Required"),
-  date: Yup.date()
+  departureDate: Yup.date()
     .min(new Date(), "Please select a date in the future")
+    .required("Required"),
+  arrivalDate: Yup.date()
+    .min(new Date(), "Please select a date in the future")
+    .when(
+      "departureDate",
+      (departureDate, schema) =>
+        departureDate &&
+        schema.min(departureDate, "Arrival Date must be after Departure Date")
+    )
     .required("Required"),
 });
 
@@ -153,7 +163,13 @@ const App = () => {
                     <Typography>Booking Information</Typography>
                   </Grid>
                   <Grid item xs={6}>
-                    <DateTimePicker name="date" />
+                    <DateTimePicker
+                      name="departureDate"
+                      label="Departure Date"
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <DateTimePicker name="arrivalDate" label="Arrival Date" />
                   </Grid>
                 </Grid>
               </Form>

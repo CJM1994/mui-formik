@@ -3,9 +3,10 @@ import { useField } from "formik";
 
 interface Props {
   name: string;
+  label: string;
 }
 
-const DateTimePicker = ({ name, ...props }: Props): JSX.Element => {
+const DateTimePicker = ({ name, label, ...props }: Props): JSX.Element => {
   const [field, meta, helpers] = useField(name);
 
   const MuiConfig: TextFieldProps = {
@@ -23,7 +24,7 @@ const DateTimePicker = ({ name, ...props }: Props): JSX.Element => {
 
   return (
     <>
-      <TextField label="Date" {...MuiConfig} {...field} error={isError} />
+      <TextField label={label} {...MuiConfig} {...field} error={isError} />
       <FormHelperText>{errorText}</FormHelperText>
     </>
   );
