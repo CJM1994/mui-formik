@@ -25,7 +25,7 @@ const DateTimePicker = ({ name, label, ...props }: Props): JSX.Element => {
   return (
     <>
       <TextField label={label} {...MuiConfig} {...field} error={isError} />
-      <FormHelperText>{errorText}</FormHelperText>
+      <FormHelperText error={isError}>{errorText}</FormHelperText>
     </>
   );
 };

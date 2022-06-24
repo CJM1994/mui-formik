@@ -34,7 +34,7 @@ const CheckboxWrapper = ({
   };
 
   const errorText = meta.error && meta.touched ? meta.error : "";
-  const isError = meta.error && meta.touched ? true : false;
+  const isError = meta.error && meta.touched ? true : undefined;
 
   return (
     <FormControl error={isError}>

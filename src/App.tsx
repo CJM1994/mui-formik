@@ -18,6 +18,7 @@ import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
 import selectorOptions from "./data/selectorOptions.json";
 import Header from "./components/Header";
 import "./styles/App.css";
+import ButtonWrapper from "./components/FormsUI/ButtonWrapper";
 
 // Would need to refactor and use ThemeProvider if theme was being used in other components
 const theme = createTheme({ spacing: 8 }); // use createTheme hook to create a theme object
@@ -205,7 +206,7 @@ const App = () => {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <Button type="submit">Submit</Button>
+                    <ButtonWrapper>Submit Form</ButtonWrapper>
                   </Grid>
                 </Grid>
               </Form>
