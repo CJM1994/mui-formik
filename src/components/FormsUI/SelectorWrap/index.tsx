@@ -46,8 +46,12 @@ const SelectorWrap = ({
         onChange={(event) => handleChange(event)}
         error={isError}
       >
-        {options.map((value: string) => {
-          return <MenuItem value={value}>{value}</MenuItem>;
+        {options.map((value: string, index: number) => {
+          return (
+            <MenuItem key={index} value={value}>
+              {value}
+            </MenuItem>
+          );
         })}
       </Select>
       <FormHelperText error={isError}>{errorText}</FormHelperText>
