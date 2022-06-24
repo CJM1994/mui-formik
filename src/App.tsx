@@ -5,12 +5,13 @@ import { jsx, css } from "@emotion/react";
 import { Container, createTheme, Grid, Typography } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import Header from "./components/Header";
-import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
-import SelectorWrap from "./components/FormsUI/SelectorWrap";
-import selectorOptions from "./data/selectorOptions.json";
-import "./styles/App.css";
+import CheckboxWrapper from "./components/FormsUI/CheckboxWrapper";
 import DateTimePicker from "./components/FormsUI/DateTimePicker";
+import SelectorWrap from "./components/FormsUI/SelectorWrap";
+import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
+import selectorOptions from "./data/selectorOptions.json";
+import Header from "./components/Header";
+import "./styles/App.css";
 
 // Would need to refactor and use ThemeProvider if theme was being used in other components
 const theme = createTheme({ spacing: 8 }); // use createTheme hook to create a theme object
@@ -35,6 +36,7 @@ const INITIAL_FORM_STATE = {
   departureDate: new Date(),
   arrivalDate: new Date(),
   message: "",
+  termsOfService: false,
 };
 
 const phoneRegExp =
@@ -186,6 +188,11 @@ const App = () => {
                       rows={4}
                     />
                   </Grid>
+                  <CheckboxWrapper
+                    name="termsOfService"
+                    label="I Agree"
+                    legend="Terms of Service"
+                  />
                 </Grid>
               </Form>
             </Formik>
