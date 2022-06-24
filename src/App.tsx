@@ -10,6 +10,7 @@ import TextFieldWrap from "./components/FormsUI/TextFieldWrap";
 import SelectorWrap from "./components/FormsUI/SelectorWrap";
 import selectorOptions from "./data/selectorOptions.json";
 import "./styles/App.css";
+import DateTimePicker from "./components/FormsUI/DateTimePicker";
 
 // Would need to refactor and use ThemeProvider if theme was being used in other components
 const theme = createTheme({ spacing: 8 }); // use createTheme hook to create a theme object
@@ -31,6 +32,7 @@ const INITIAL_FORM_STATE = {
   city: "",
   province: "",
   country: "",
+  date: new Date(),
 };
 
 const phoneRegExp =
@@ -60,6 +62,9 @@ const VALIDATION_SCHEMA = Yup.object().shape({
   city: Yup.string().required("Required"),
   province: Yup.string().required("Required"),
   country: Yup.string().required("Required"),
+  date: Yup.date()
+    .min(new Date(), "Please select a date in the future")
+    .required("Required"),
 });
 
 const App = () => {
@@ -100,10 +105,10 @@ const App = () => {
                       label="Last Name"
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <TextFieldWrap name="email" type="text" label="Email" />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <TextFieldWrap
                       name="phoneNumber"
                       type="text"
@@ -120,7 +125,7 @@ const App = () => {
                       label="Address Line 1"
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <TextFieldWrap
                       name="addressLine2"
                       type="text"
@@ -137,7 +142,7 @@ const App = () => {
                       options={selectorOptions.provinces}
                     />
                   </Grid>
-                  <Grid item xs={6}>
+                  <Grid item xs={12}>
                     <SelectorWrap
                       name="country"
                       label="Country"
@@ -146,6 +151,9 @@ const App = () => {
                   </Grid>
                   <Grid item xs={12}>
                     <Typography>Booking Information</Typography>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <DateTimePicker name="date" />
                   </Grid>
                 </Grid>
               </Form>
